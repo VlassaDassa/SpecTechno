@@ -1,0 +1,214 @@
+@use './../../assets/styles/variables' as vars;
+
+
+.feedback {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    background: linear-gradient(84.316deg, vars.$white 0%, vars.$accent 100%);;
+    overflow: hidden;
+}
+
+.wave-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wave-path {
+    fill: vars.$secondary;
+}
+
+.feedbackForm {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background: linear-gradient(130.734deg, vars.$white 70%, vars.$accent 99%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 60px;
+
+    width: 600px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 600px;
+    padding: 60px;
+    
+    form {
+        width: 100%;
+    }
+}
+
+
+.fieldWrapper {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  
+  img {
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 25px;
+        height: 25px;
+        pointer-events: none; 
+    }
+}
+
+
+.feedbackTitle{
+    font-size: 24px;
+    font-weight: vars.$medium;
+    margin-bottom: 50px;
+}
+
+.feedbackField {
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 30px;
+    height: 40px;
+    padding: 10px 10px 10px 35px;
+    border-bottom: 1px solid rgba(vars.$secondary, 0.5);
+    font-size: 20px;
+
+    color: rgba(vars.$textColor, 0.5);
+
+    outline: none;
+    resize: none;
+
+    &::placeholder {
+        color: rgba(vars.$textColor, 0.5);
+    }
+}
+
+
+.textareaClone {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: pre-wrap;
+    word-wrap: 'break-word';
+    width: 100;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    padding: 5px 10px 10px 35px;
+    box-sizing: border-box;
+}
+
+.feedbackCounter {
+    position: absolute;
+    right: 10px;
+    bottom: -15px; 
+    font-size: 14px;
+    color: rgba(vars.$textColor, 0.5);
+    font-weight: vars.$regular;
+    pointer-events: none;
+}
+
+
+.submitBtn {
+    width: 100%;
+    padding: 15px;
+    color: vars.$white;
+    border: 1px solid vars.$accent;
+    border-radius: 15px;
+    font-size: 20px;
+    color: vars.$textColor;
+
+    text-align: center;
+
+    transition: all 0.1s ease-in-out;
+
+    margin-top: 25px;
+    
+    &:hover {
+        background: darken(vars.$accent, 10%);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }   
+}
+
+
+.arrowLeft {
+    transform: scaleX(-1);
+}
+
+.arrowLeftWrapper {
+    position: absolute;
+    left: 700px;
+    top: 100px;
+}
+
+.arrowRightWrapper {
+    position: absolute;
+    right: 700px;
+    top: 100px;
+}
+
+
+.arrowText {
+    font-size: 24px;
+    font-weight: vars.$medium;
+}
+
+
+.arrowTextLeft {
+    position: relative;
+    top: -50px;
+    transform: rotate(-15deg);
+}
+
+
+.arrowTextRight {
+    position: relative;
+    right: -200px;
+    transform: rotate(15deg);
+}
+
+
+.rectangle, .messageRectangle {
+    position: absolute;
+}
+
+
+.rectangle1 {
+    top: 500px;
+    left: 100px;
+}
+
+.rectangle2 {
+    top: 450px;
+    left: 300px;
+}
+
+.rectangle3 {
+    top: 500px;
+    right: 100px;
+}
+
+.rectangle4 {
+    top: 400px;
+    right: 300px;
+}
+
+.messageRectangle1 {
+    top: 700px;
+    left: 400px;
+}
+
+.messageRectangle2 {
+    top: 700px;
+    right: 400px;
+}
