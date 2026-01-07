@@ -1,0 +1,122 @@
+@use './../../assets/styles/variables' as vars;
+
+
+
+.services {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    position: relative;
+    min-height: 800px;
+
+    margin-bottom: 1000px;
+}
+
+
+.serviceItem {
+    background: vars.$gray;
+    border-radius: 25px;
+
+    height: calc(400px - 30px);
+    width: calc(970px - 65px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 15px 15px 50px;
+
+    position: relative;
+    z-index: 10;
+
+    &:nth-child(odd) {
+        margin-left: auto;
+    }
+    
+    &:nth-child(even) {
+        margin-right: auto;
+    }
+}
+
+
+.serviceImage {
+    width: 540px;
+    height: 370px;
+
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+
+.number {
+    background: vars.$accent;
+    color: vars.$white;
+
+    font-size: 20px;
+    font-weight: vars.$medium;
+
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+
+.servicesTitle {
+    font-size: 32px;
+    font-weight: vars.$bold;
+
+    margin-bottom: 15px;
+}
+
+
+.serviceText {
+    text-align: left;
+}
+
+
+.serviceButton {
+    border: 1px solid vars.$accent;
+    border-radius: 15px;
+    font-weight: vars.$medium;
+    background-color: vars.$white;
+    font-size: 20px;
+    z-index: 10;
+
+    padding: 20px 30px;
+
+    margin-left: auto;
+    transition: all .1s ease-in-out;
+
+    &:hover {
+        background-color: vars.$accent;
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+
+.node {
+    position: absolute;
+    top: -240px;
+    left: -235px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.node2 {
+    top: -250px;
+    left: 75px;
+}
+
