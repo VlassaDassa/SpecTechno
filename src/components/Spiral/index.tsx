@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-
+import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import "./index.scss";
 
 export interface SpiralConfig {
@@ -68,20 +67,25 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
 }) => {
     const svgRef = useRef<SVGSVGElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [spiralConfig, setSpiralConfig] = useState<SpiralConfig>({
+    
+    // Объединяем конфиг сразу
+    const spiralConfig = useMemo<SpiralConfig>(() => ({
         ...defaultConfig,
         ...config,
-    });
+    }), [config]);
+
     const [path, setPath] = useState("");
     const [nodes, setNodes] = useState<
         Array<{ x: number; y: number; index: number }>
     >([]);
     const [foundElements, setFoundElements] = useState<Element[]>([]);
-    const [controlValues, setControlValues] = useState({
+    
+    // Контрольные значения теперь напрямую из spiralConfig
+    const controlValues = useMemo(() => ({
         sCurveStrength: spiralConfig.sCurveStrength,
         curveHeight: spiralConfig.curveHeight,
         smoothness: spiralConfig.smoothness,
-    });
+    }), [spiralConfig.sCurveStrength, spiralConfig.curveHeight, spiralConfig.smoothness]);
 
     const [curvePoints, setCurvePoints] = useState<PointOnCurve[]>([]);
     const [customNodePositions, setCustomNodePositions] = useState<
@@ -93,13 +97,6 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
 
     // Храним сегменты кривой для точного позиционирования узлов
     const [curveSegments, setCurveSegments] = useState<CurveSegment[]>([]);
-
-    useEffect(() => {
-        setSpiralConfig((prev) => ({
-            ...prev,
-            ...controlValues,
-        }));
-    }, [controlValues]);
 
     const getBlockPositions = useCallback((): BlockPosition[] => {
         if (typeof window === "undefined") return [];
@@ -145,7 +142,7 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         return positions;
     }, [blockSelector]);
 
-    const calculatePointOnBezierCurve = (
+    const calculatePointOnBezierCurve = useCallback((
         p0: { x: number; y: number },
         p1: { x: number; y: number },
         p2: { x: number; y: number },
@@ -187,10 +184,10 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         const normal = { x: -tangent.y, y: tangent.x };
 
         return { x, y, tangent, normal };
-    };
+    }, []);
 
     // Новая функция для разбора сегментов кривой
-    const parsePathSegments = (pathData: string): CurveSegment[] => {
+    const parsePathSegments = useCallback((pathData: string): CurveSegment[] => {
         const segments: CurveSegment[] = [];
 
         const commands = pathData.match(/[MCLS][^MCLS]*/g);
@@ -297,13 +294,12 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         }
 
         return segments;
-    };
+    }, []);
 
     // Улучшенная функция расчета точек на кривой с учетом сегментов
-    const parsePathAndCalculatePoints = (pathData: string): PointOnCurve[] => {
+    const parsePathAndCalculatePoints = useCallback((pathData: string): PointOnCurve[] => {
         const points: PointOnCurve[] = [];
         const segments = parsePathSegments(pathData);
-        setCurveSegments(segments);
 
         for (const segment of segments) {
             if (segment.type === "C" || segment.type === "S") {
@@ -352,10 +348,10 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         }
 
         return points;
-    };
+    }, [parsePathSegments, calculatePointOnBezierCurve]);
 
     // Улучшенная функция расчета позиций кастомных узлов
-    const calculateCustomNodePositions = (
+    const calculateCustomNodePositions = useCallback((
         points: PointOnCurve[],
         customNodes: CustomNodeConfig[] = [],
         segments: CurveSegment[] = []
@@ -438,9 +434,9 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         });
 
         return nodePositions;
-    };
+    }, [calculatePointOnBezierCurve]);
 
-    const createAdvancedSCurve = (positions: BlockPosition[]): string => {
+    const createAdvancedSCurve = useCallback((positions: BlockPosition[]): string => {
         if (positions.length < 2) return "";
 
         setNodes(positions.map((pos, idx) => ({ ...pos, index: idx })));
@@ -505,18 +501,8 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
             }
         }
 
-        const curvePoints = parsePathAndCalculatePoints(pathData);
-        setCurvePoints(curvePoints);
-
-        const customNodePos = calculateCustomNodePositions(
-            curvePoints,
-            spiralConfig.customNodes,
-            curveSegments
-        );
-        setCustomNodePositions(customNodePos);
-
         return pathData;
-    };
+    }, [spiralConfig]);
 
     const updateCurve = useCallback(() => {
         const positions = getBlockPositions();
@@ -524,10 +510,36 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         if (positions.length >= 2) {
             const newPath = createAdvancedSCurve(positions);
             setPath(newPath);
+            
+            // Вычисляем точки кривой
+            const points = parsePathAndCalculatePoints(newPath);
+            setCurvePoints(points);
+            
+            // Вычисляем сегменты
+            const segments = parsePathSegments(newPath);
+            setCurveSegments(segments);
+            
+            // Вычисляем позиции кастомных узлов
+            const customNodePos = calculateCustomNodePositions(
+                points,
+                spiralConfig.customNodes,
+                segments
+            );
+            setCustomNodePositions(customNodePos);
         } else {
             setPath("");
+            setCurvePoints([]);
+            setCurveSegments([]);
+            setCustomNodePositions([]);
         }
-    }, [getBlockPositions, createAdvancedSCurve]);
+    }, [
+        getBlockPositions, 
+        createAdvancedSCurve, 
+        parsePathAndCalculatePoints,
+        parsePathSegments,
+        calculateCustomNodePositions,
+        spiralConfig.customNodes
+    ]);
 
     useEffect(() => {
         updateCurve();
@@ -569,6 +581,7 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
         };
     }, [updateCurve, blockSelector]);
 
+    // Убираем лишний useEffect для controlValues, так как они теперь в spiralConfig
 
     return (
         <>
@@ -693,8 +706,7 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
                                             overflow: "visible",
                                         }}
                                     >
-                                        <path
-                                            xmlns="http://www.w3.org/1999/xhtml"
+                                        <div
                                             style={{
                                                 width: "100%",
                                                 height: "100%",
@@ -707,7 +719,7 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
                                             <div className="nodeContent">
                                                 {config.content}
                                             </div>
-                                        </path>
+                                        </div>
                                     </foreignObject>
                                 )}
                             </g>

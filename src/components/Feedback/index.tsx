@@ -98,9 +98,10 @@ const Feedback: React.FC = () => {
         // Clear form
         setTimeout(() => {
             setIsSubmitted(false);
-            setCounter(0);
             setShowSuccess(false);
         }, 5000);
+        
+        setCounter(0);
         
         // Hide push
         setTimeout(() => {
