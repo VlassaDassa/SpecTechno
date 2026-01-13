@@ -22,6 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 20px;
 
     padding: 15px 15px 15px 50px;
 
@@ -35,6 +36,13 @@
     &:nth-child(even) {
         margin-right: auto;
     }
+
+    @media (max-width: 1920px) {
+        // padding: 15px 15px 15px 50px;
+
+        height: calc(350px - 30px);
+        width: calc(900px - 65px);
+    }
 }
 
 
@@ -44,6 +52,11 @@
 
     border-radius: 25px;
     object-fit: cover;
+
+    @media (max-width: 1920px) {
+        width: 490px;
+        height: 320px;
+    }
 }
 
 
@@ -71,6 +84,10 @@
     font-weight: vars.$bold;
 
     margin-bottom: 15px;
+
+    @media (max-width: 1920px) {
+        font-size: 28px;
+    }
 }
 
 

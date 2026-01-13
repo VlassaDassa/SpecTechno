@@ -149,12 +149,20 @@
     position: absolute;
     left: 700px;
     top: 100px;
+
+    @media (max-width: 1920px) {
+        left: 300px;
+    }
 }
 
 .arrowRightWrapper {
     position: absolute;
     right: 700px;
     top: 100px;
+
+    @media (max-width: 1920px) {
+        right: 300px;
+    }
 }
 
 

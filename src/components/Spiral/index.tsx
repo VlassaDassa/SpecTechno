@@ -118,16 +118,44 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
 
             let x = rect.left - containerRect.left + rect.width / 2;
             let y = rect.top - containerRect.top + rect.height / 2;
+            
+            
+            // Смещение узлов в зависимости от размера экрана
+            if (window.innerWidth <= 1920 && window.innerWidth > 1600) {
+                if (block.id == "service-2") {
+                    x = rect.left + 300;
+                    y = rect.top + 100;
+                }
 
-            if (block.id == "service-2") {
-                x = rect.left + 200;
-                y = rect.top + 100;
+                if (block.id == "service-3") {
+                    x = rect.left - 10;
+                    y = rect.top + 200;
+                }
+            } 
+            else if (window.innerWidth > 1920) {
+                if (block.id == "service-2") {
+                    x = rect.left + 200;
+                    y = rect.top + 100;
+                }
+
+                if (block.id == "service-3") {
+                    x = rect.left - 200;
+                    y = rect.top + 100;
+                }
             }
 
-            if (block.id == "service-3") {
-                x = rect.left - 200;
-                y = rect.top + 100;
+            else if (window.innerWidth <= 1600 && window.innerWidth > 1440) {
+                if (block.id == "service-2") {
+                    x = rect.left + 600;
+                    y = rect.top + 200;
+                }
+
+                if (block.id == "service-3") {
+                    x = rect.left - 10;
+                    y = rect.top + 200;
+                }
             }
+            
 
             positions.push({
                 id: index,

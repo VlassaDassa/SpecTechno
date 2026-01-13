@@ -24,6 +24,7 @@ const Services: React.FC = () => {
         curveHeight: -2000,
         smoothness: 0.3,
 
+
         // Custom nodes
         customNodes: [
             {
