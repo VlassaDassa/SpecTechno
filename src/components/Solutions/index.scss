@@ -31,6 +31,10 @@
     overflow: hidden;
 
     margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+      height: 200px;
+    }
 }
 
 .text {

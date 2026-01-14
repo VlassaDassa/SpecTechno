@@ -7,6 +7,10 @@
     height: 1000px;
     background: linear-gradient(84.316deg, vars.$white 0%, vars.$accent 100%);;
     overflow: hidden;
+    
+    @media (max-width: 768px) {
+        height: 600px;
+    }
 }
 
 .wave-svg {
@@ -38,11 +42,14 @@
     align-items: center;
     justify-content: center;
 
-    width: 600px;
     padding: 60px;
     
     form {
         width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        width: 500px;
     }
 }
 
@@ -68,6 +75,10 @@
     font-size: 24px;
     font-weight: vars.$medium;
     margin-bottom: 50px;
+    
+    @media (max-width: 768px) {
+        font-size: 20px;
+    }
 }
 
 .feedbackField {
@@ -86,6 +97,10 @@
 
     &::placeholder {
         color: rgba(vars.$textColor, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        font-size: 16px;
     }
 }
 
@@ -138,6 +153,11 @@
     &:active {
         transform: scale(0.97);
     }   
+
+    @media (max-width: 768px) {
+        margin-top: 15px;
+        font-size: 16px;
+    }
 }
 
 
@@ -157,6 +177,14 @@
     @media (max-width: 1440px) {
         left: 100px;
     }
+
+    @media (max-width: 1024px) {
+        left: 0;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 .arrowRightWrapper {
@@ -170,6 +198,14 @@
 
     @media (max-width: 1440px) {
         right: 100px;
+    }
+
+    @media (max-width: 1024px) {
+        right: 0;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
     }
 }
 
@@ -198,6 +234,10 @@
     position: absolute;
 
     pointer-events: none;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 
@@ -236,6 +276,10 @@
     @media (max-width: 1280px) {
         left: 50%;
         transform: translate(-50%);
+    }
+
+    @media (max-width: 1024px) {
+        display: none;
     }
 }
 
