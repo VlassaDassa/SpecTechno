@@ -155,6 +155,18 @@ const CustomSpiral: React.FC<CustomSpiralProps> = ({
                     y = rect.top + 200;
                 }
             }
+
+            else if (window.innerWidth <= 1440) {
+                if (block.id == "service-2") {
+                    x = rect.left + 600;
+                    y = rect.top + 100;
+                }
+
+                if (block.id == "service-3") {
+                    x = rect.left - 10;
+                    y = rect.top + 100;
+                }
+            }
             
 
             positions.push({

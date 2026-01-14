@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import CustomSpiral from './../Spiral';
 
@@ -14,6 +15,7 @@ import './index.scss';
 
 
 const Services: React.FC = () => {
+    const isDesktop = useMediaQuery({ minWidth: 1281 });
     const [spiralConfig, setSpiralConfig] = useState({
         lineColor: '#BFF8E7',
         lineWidth: 7,
@@ -57,10 +59,12 @@ const Services: React.FC = () => {
             <h2 className="subTitle">Услуги в области обеспечения пожарной безопасности</h2>
 
             <div className="services">
-                <CustomSpiral
-                    blockSelector=".serviceNode"
-                    config={spiralConfig}
-                />
+                {isDesktop && (
+                    <CustomSpiral
+                        blockSelector=".serviceNode"
+                        config={spiralConfig}
+                    />
+                )}
 
                 <div className="serviceItem serviceNode" id="service-1">
                     <div className="textWrapper">

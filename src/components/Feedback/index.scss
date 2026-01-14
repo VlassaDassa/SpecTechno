@@ -153,6 +153,10 @@
     @media (max-width: 1920px) {
         left: 300px;
     }
+
+    @media (max-width: 1440px) {
+        left: 100px;
+    }
 }
 
 .arrowRightWrapper {
@@ -162,6 +166,10 @@
 
     @media (max-width: 1920px) {
         right: 300px;
+    }
+
+    @media (max-width: 1440px) {
+        right: 100px;
     }
 }
 
@@ -188,6 +196,8 @@
 
 .rectangle, .messageRectangle {
     position: absolute;
+
+    pointer-events: none;
 }
 
 
@@ -199,6 +209,10 @@
 .rectangle2 {
     top: 450px;
     left: 300px;
+
+    @media (max-width: 1440px) {
+        display: none;
+    }
 }
 
 .rectangle3 {
@@ -209,16 +223,29 @@
 .rectangle4 {
     top: 400px;
     right: 300px;
+
+    @media (max-width: 1440px) {
+        display: none;
+    }
 }
 
 .messageRectangle1 {
     top: 700px;
     left: 400px;
+
+    @media (max-width: 1280px) {
+        left: 50%;
+        transform: translate(-50%);
+    }
 }
 
 .messageRectangle2 {
     top: 700px;
     right: 400px;
+
+    @media (max-width: 1280px) {
+        display: none;
+    }
 }
 
 
