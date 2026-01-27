@@ -13,6 +13,10 @@
     @media (max-width: 768px) {
         gap: 10px;
     }
+
+    @media (max-width: 768px) {
+        min-height: auto;
+    }
 }
 
 
@@ -65,6 +69,12 @@
     @media (max-width: 768px) {
         height: calc(300px - 30px);
     }
+
+    @media (max-width: 768px) {
+        height: auto;
+        padding: 40px 30px;
+        width: calc(100% - 60px);
+    }
 }
 
 
@@ -86,6 +96,10 @@
 
     @media (max-width: 768px) {
         height: calc(300px - 30px);
+    }
+
+    @media (max-width: 600px) {
+        display: none;
     }
 }
 
@@ -171,6 +185,10 @@
 
     @media (max-width: 768px) {
         font-size: 16px;
+    }
+
+    @media (max-width: 1280px) {
+        margin-top: 10px;
     }
 }
 
