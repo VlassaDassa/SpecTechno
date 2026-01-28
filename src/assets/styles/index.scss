@@ -52,6 +52,15 @@ body {
     @media (max-width: 768px) {
         max-width: calc(100% - 40px); 
     }
+
+    @media (max-width: 375px) {
+        min-width: 320px;
+        max-width: calc(100% - 40px); 
+    }
+
+    @media (max-width: 320px) {
+        min-width: 270px;
+    }
 } 
 
 .subTitle {
