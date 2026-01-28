@@ -8,13 +8,11 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    // padding: 0 75px;
-    
-    overflow-x: hidden;
 
     font-family: "Raleway", sans-serif;
     color: vars.$textColor;
 }
+
 
 .container {
     max-width: 1770px;   

@@ -6,6 +6,8 @@
     height: 800px;
     background: linear-gradient(84.316deg, vars.$white 0%, vars.$accent 100%);
 
+    overflow-x: hidden;
+
     @media (max-width: 1440px) {
       height: 600px;
     }
@@ -76,7 +78,7 @@
     }
 
     @media (max-width: 1440px) {
-      visibility: hidden;
+      display: none;
     }
 }
 
