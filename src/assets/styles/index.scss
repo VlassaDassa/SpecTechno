@@ -73,6 +73,11 @@ body {
     @media (max-width: 768px) {
         font-size: 20px; 
     }
+
+    @media (max-width: 400px) {
+        margin-bottom: 10px;
+        line-height: 130%;
+    }
 }
 
 .text {
@@ -97,6 +102,10 @@ body {
 
 .section {
     margin-top: 50px;
+
+    @media (max-width: 400px) {
+        margin-top: 25px;
+    }
 }
 
 .errorText {

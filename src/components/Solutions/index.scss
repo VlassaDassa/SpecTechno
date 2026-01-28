@@ -18,6 +18,33 @@
     @media (max-width: 600px) {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    @media (max-width: 400px) {
+      display: flex;
+      flex-direction: column;
+    }
+}
+
+.solutionItem {
+  @media (max-width: 400px) {
+    border-bottom: 1px solid rgba(vars.$accent, 0.5);
+
+    .text {
+      text-align: left;
+      padding-left: 15px;
+      position: relative;
+
+      &::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: vars.$accent; 
+        font-size: 40px; 
+      }
+    }
+  }
 }
 
 
@@ -38,6 +65,10 @@
 
     @media (max-width: 768px) {
       height: 200px;
+    }
+
+    @media (max-width: 400px) {
+      display: none;
     }
 }
 
